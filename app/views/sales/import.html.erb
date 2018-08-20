@@ -11,8 +11,9 @@
 
 <%=
   render 'dash',
-  total_itens: @sale.items.count,
-  total_price: @sale.items.sum(:price)
+  total_itens: @sale.total_items,
+  total_amount: @sale.total_amount,
+  total_price: @sale.total_price
 %>
 
 <%= render 'sales/items' %>

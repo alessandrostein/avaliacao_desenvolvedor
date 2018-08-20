@@ -8,9 +8,10 @@
 
 <%=
   render 'dash',
-  total_sales: Sale.all.count,
-  total_itens: SaleItem.all.count,
-  total_price: SaleItem.sum(:price)
+  total_sales: Sale.total_sales,
+  total_itens: SaleItem.total_items,
+  total_amount: SaleItem.total_amount,
+  total_price: SaleItem.total_price
 %>
 
 <p class="actions">
@@ -23,6 +24,7 @@
       <th scope="col">#</th>
       <th scope="col">Importado em</th>
       <th scope="col">Total de Itens</th>
+      <th scope="col">Quantidade</th>
       <th scope="col">Receita</th>
       <th scope="col"></th>
     </tr>
@@ -32,10 +34,11 @@
       <tr>
         <th scope="row"><%= sale.id %></th>
         <td><%= sale.created_at.strftime("%b, %m %Y - %H:%M") %></td>
-        <td><%= sale.items.count %></td>
+        <td><%= sale.total_items %></td>
+        <td><%= sale.total_amount %></td>
         <td>
           <%= number_to_currency(
-            sale.items.sum(:price), precision: 2, unit: 'R$', separator: ','
+            sale.total_price, precision: 2, unit: 'R$', separator: ','
           ) %>
         </td>
         <td>

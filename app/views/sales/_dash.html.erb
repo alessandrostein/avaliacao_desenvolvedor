@@ -27,6 +27,20 @@
       </div>
     </div>
   <% end %>
+  <% if defined?(total_amount) %>
+    <div class="col-sm-3 col-xs-12">
+      <div class="dash">
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            Quantidade
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <%= total_amount %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
   <% if defined?(total_price) %>
     <div class="col-sm-3 col-xs-12">
       <div class="dash">
