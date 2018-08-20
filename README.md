@@ -8,7 +8,7 @@ todos os requisitos proposto no desafio.
 Ruby 2.3+
 Rails 5+
 
-## Configuração do projeto
+## Download do projeto
 
 `git clone git@github.com:alessandrostein/avaliacao_desenvolvedor.git`
 
