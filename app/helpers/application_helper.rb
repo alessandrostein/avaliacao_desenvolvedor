@@ -7,7 +7,6 @@ module ApplicationHelper
         messages += "<div class='alert alert-#{type}' role='alert'>#{flash[type]}</div>"
       end
     }
-
     messages.html_safe
   end
 end
