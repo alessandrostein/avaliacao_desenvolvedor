@@ -7,4 +7,10 @@
 
 <h1>Items</h1>
 
+<%=
+  render 'dash',
+  total_itens: @sale.items.count,
+  total_price: @sale.items.sum(:price)
+%>
+
 <%= render 'items' %>

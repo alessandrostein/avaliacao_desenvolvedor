@@ -1,40 +1,46 @@
 <div class="row">
-  <div class="col-sm-3 col-xs-12">
-    <div class="dash">
-      <div class="row">
-        <div class="col-sm-6 col-xs-12">
-          Vendas
-        </div>
-        <div class="col-sm-6 col-xs-12">
-          <%= Sale.all.count %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3 col-xs-12">
-    <div class="dash">
-      <div class="row">
-        <div class="col-sm-6 col-xs-12">
-          Itens
-        </div>
-        <div class="col-sm-6 col-xs-12">
-          <%= SaleItem.all.count %>
+  <% if defined?(total_sales) %>
+    <div class="col-sm-3 col-xs-12">
+      <div class="dash">
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            Vendas
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <%= total_sales %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-sm-3 col-xs-12">
-    <div class="dash">
-      <div class="row">
-        <div class="col-sm-6 col-xs-12">
-          Receita
-        </div>
-        <div class="col-sm-6 col-xs-12">
-          <%= number_to_currency(
-            SaleItem.all.sum(:price), precision: 2, unit: 'R$', separator: ','
-          ) %>
+  <% end %>
+  <% if defined?(total_itens) %>
+    <div class="col-sm-3 col-xs-12">
+      <div class="dash">
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            Itens
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <%= total_itens %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
+  <% if defined?(total_price) %>
+    <div class="col-sm-3 col-xs-12">
+      <div class="dash">
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            Receita
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <%= number_to_currency(
+              total_price, precision: 2, unit: 'R$', separator: ','
+            ) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>

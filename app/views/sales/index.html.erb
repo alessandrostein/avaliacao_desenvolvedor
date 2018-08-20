@@ -6,7 +6,12 @@
 
 <h1>Vendas</h1>
 
-<%= render 'dash' %>
+<%=
+  render 'dash',
+  total_sales: Sale.all.count,
+  total_itens: SaleItem.all.count,
+  total_price: SaleItem.sum(:price)
+%>
 
 <p class="actions">
   <%= link_to 'Importar vendas', new_sale_path, class: "btn btn-primary"  %>
