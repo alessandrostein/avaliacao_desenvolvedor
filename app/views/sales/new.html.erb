@@ -1,7 +1,18 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/sales">Vendas</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Nova importação</li>
+  </ol>
+</nav>
+
 <h1>Importar vendas</h1>
 
+<%= notification %>
+
 <%= form_tag(import_sales_path, method: "post", multipart: true) do %>
-  <%= label_tag(:file, "Documento:") %>
-  <%= file_field_tag(:file) %>
-  <%= submit_tag("Importar") %>
+  <div class="form-group">
+    <%= label_tag(:file, "Arquivo (txt):") %>
+    <%= file_field_tag(:file) %>
+  </div>
+  <button type="submit" class="btn btn-primary">Importar</button>
 <% end %>

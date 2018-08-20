@@ -1,3 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.dash {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+}
+
+.actions {
+  margin-top: 10px;
+}

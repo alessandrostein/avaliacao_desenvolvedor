@@ -1,28 +1,10 @@
-<h1>Importação de vendas</h1>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/sales">Vendas</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Items</li>
+  </ol>
+</nav>
 
-<table class="table">
-  <tbody>
-    <% @sale.items.each do |item| %>
-      <tr>
-        <td>
-          <%= item.buyer %>
-        </td>
-        <td>
-          <%= item.description %>
-        </td>
-        <td>
-          <%= item.price %>
-        </td>
-        <td>
-          <%= item.amount %>
-        </td>
-        <td>
-          <%= item.address %>
-        </td>
-        <td>
-          <%= item.vendor %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h1>Items</h1>
+
+<%= render 'items' %>

@@ -1,24 +1,41 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Vendas</li>
+  </ol>
+</nav>
+
 <h1>Vendas</h1>
+
+<%= render 'dash' %>
 
 <p class="actions">
   <%= link_to 'Importar vendas', new_sale_path, class: "btn btn-primary"  %>
 </p>
 
 <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Importado em</th>
+      <th scope="col">Total de Itens</th>
+      <th scope="col">Receita</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
   <tbody>
     <% @sales.each do |sale| %>
       <tr>
+        <th scope="row"><%= sale.id %></th>
+        <td><%= sale.created_at.strftime("%b, %m %Y - %H:%M") %></td>
+        <td><%= sale.items.count %></td>
         <td>
-          <%= sale.id %>
-        </td>
-        <td>
-          <%= sale.created_at %>
+          <%= number_to_currency(
+            sale.items.sum(:price), precision: 2, unit: 'R$', separator: ','
+          ) %>
         </td>
         <td>
           <%= link_to "Ver itens", sale_path(sale) %>
         </td>
-
-
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,42 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/sales">Vendas</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Importação</li>
+  </ol>
+</nav>
+
+<h1>Importação de vendas</h1>
+
+<%= notification %>
+
+<div class="row">
+  <div class="col-sm-3 col-xs-12">
+    <div class="dash">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          Itens
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <%= @sale.items.count %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3 col-xs-12">
+    <div class="dash">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          Receita
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <%= number_to_currency(
+            @sale.items.sum(:price), precision: 2, unit: 'R$', separator: ','
+          ) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%= render 'sales/items' %>

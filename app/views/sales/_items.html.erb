@@ -1,0 +1,28 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Comprador</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Preço Unitário</th>
+      <th scope="col">Quantidade</th>
+      <th scope="col">Endereço</th>
+      <th scope="col">Fornecedor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sale.items.each do |item| %>
+      <tr>
+        <th scope="row"><%= item.buyer %></th>
+        <td><%= item.description %></td>
+        <td>
+          <%= number_to_currency(
+            item.price, precision: 2, unit: 'R$', separator: ','
+          ) %>
+        </td>
+        <td><%= item.amount %></td>
+        <td><%= item.address %></td>
+        <td><%= item.vendor %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
