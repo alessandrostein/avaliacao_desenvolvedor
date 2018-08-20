@@ -9,23 +9,23 @@ class SalesController < ApplicationController
   end
 
   def import
-    sale = Sale.new
-    File.read(params[:file].path, :encoding => "UTF-8", headers: false).each_line.with_index do |line, index|
-      next if index == 0      
-      data = line.split("\t")
-      buyer, description, price, amount, address, vendor = data.map{ |d| d }.flatten
-      item = SaleItem.new
-      item.buyer = buyer
-      item.description = description
-      item.price = price
-      item.amount = amount
-      item.address = address
-      item.vendor = vendor
-      sale.items << item
+    if params[:file].nil?
+      flash[:danger] = "Por favor, selecione o arquivo."
+      redirect_to new_sale_path
+      return
     end
-    sale.save
+    flash[:success] = "Dados importado com sucesso."
+    @sale = Sale.new
+    normalize_items.each do |item|
+      @sale.items << SaleItem.new(item)
+    end
+    @sale.save
+  end
 
-    redirect_to sale_path(sale)
+  private
+
+  def normalize_items
+    Service::SaleFileNormalize.new(params[:file]).resolver
   end
 
 end
